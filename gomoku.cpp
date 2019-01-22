@@ -1,4 +1,3 @@
-
 #include<stdio.h> 
 int main(void) {
 	static char a[9][9] =
@@ -12,7 +11,7 @@ int main(void) {
 	{ '7', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 	{ '8', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, };
 
-	int i, j,max=0,k=0, gyou, retsu, count = 0, flag = 0;
+	int i, j,  k = 0, gyou, retsu, count = 0, flag = 0;
 	while (1) {
 		while (1) {
 			printf("行と列を入力してください。\n");
@@ -51,66 +50,86 @@ int main(void) {
 
 		//横一列
 		for (i = 1; i < 9; i++) {
-			if (a[gyou][i] != a[gyou][retsu])
-			{
-				if (max < k)
-					max = k;
-				k = 0;
-				break;
-			}
-			else k++;
+			if (a[gyou][i] == a[gyou][retsu]) {
+				k++;
 
-			if (max == 5){
+
+				if (k == 5);
+
+			}
+			else
+				k = 0;
+			if (k == 5) {
 				printf("並んでいます。\n");
+
 				flag = 1;
 			}
-			else printf("並んでいません\n");
+
 		}
-		
+
+
+
+
 
 		//縦一列
-		for (i = 1; i < 6; i++)
-		{
-			if (a[i][retsu] != a[gyou][retsu])break;
-			if (i == 5){
+		k = 0;
+		for (i = 1; i < 9; i++) {
+			if (a[i][retsu] == a[gyou][retsu]) {
+				k++;
+				if (i == 5);
+			}
+			else
+				k = 0;
+			if (k == 5) {
 				printf("並んでいます。\n");
 				flag = 1;
 			}
-			else printf("並んでいません\n");
-		}
-		if (gyou == 3 && retsu == 3) {
-			//右下がり
-			for (i = 1; i < 6; i++)
-			{
-				if (a[i][i] != a[gyou][retsu])break;
-				if (i == 5){
-					printf("並んでいます。\n");
-					flag = 1;
-				}
-				else ("並んでいません\n");
-			}
-			//右上がり
-			for (i = 1; i < 6; i++)
-			{
-				if (a[i][6 - i] != a[gyou][retsu])break;
-				if (i == 5){
-					printf("並んでいます。\n");
-					flag = 1;
-				}
-				else ("並んでいません\n");
 
+		}
+
+		//右下がり
+		k = 0;
+		for (i = 0; i < 9; i++) {
+			if (a[gyou - 4 + i][retsu - 4 + i] == a[gyou][retsu]) {
+				k++;
+				if (i == 5);
 			}
+			else
+				k = 0;
+			if (k == 5) {
+				printf("並んでいます。\n");
+				flag = 1;
+			}
+
+		}
+		//右上がり
+		k = 0;
+		for (i = 0; i < 9; i++) {
+			if (a[gyou - 4 + i][retsu + 4 - i] == a[gyou][retsu]) {
+				k++;
+				if (k == 5);
+			}
+			else
+				k = 0;
+			if(k==5){
+				printf("並んでいます。\n");
+				flag = 1;
+			}
+
+
+
 		}
 
 
 		if (flag == 1)
 			break;
 
+
+
 	}
 
 
 
-
-	return 0;
-}
+		return 0;
+	}
 
